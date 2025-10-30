@@ -1,0 +1,5 @@
+flask==2.2.3
+requests>=2.28.0
+numpy~=1.25.0
+pandas
+Werkzeug==2.3.7
