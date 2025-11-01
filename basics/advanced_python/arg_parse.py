@@ -19,12 +19,14 @@ parser = argparse.ArgumentParser()
 # else:
 #     print("verbose off")
 
-# 4) Combining positional & optional args.
+# 4) Combining positional & optional args, multiple levels of verbosity.
 parser.add_argument("square", type=int, help="display square of teh requested number")
-parser.add_argument("-v", "--verbose", action="store_true", help="increase output verbosity")
+parser.add_argument("-v", "--verbosity", type=int, help="increase output verbosity")
 args = parser.parse_args()
 answer = args.square**2
-if args.verbose:
+if args.verbosity == 2:
     print(f"Square of {args.square} = {answer}")
+elif args.verbosity == 1:
+    print(f"{args.square}^2 = {answer}")
 else:
     print(answer)
