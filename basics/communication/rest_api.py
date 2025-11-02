@@ -15,9 +15,18 @@ post_response_info = [post_response.json(), post_response.status_code, post_resp
 # PUT Method.
 api_url = "https://jsonplaceholder.typicode.com/todos/10"
 response = requests.get(api_url)
-print(response.json())
+# print(response.json())
 todo = {"userId": 1, "title": "Wash Car", "completed": True}
 response = requests.put(api_url, json=todo)
+# print(response.json())
+
+# PATHCH Method.
+api_url = "https://jsonplaceholder.typicode.com/todos/10"
+response = requests.get(api_url)
+print(response.json())
+api_url = "https://jsonplaceholder.typicode.com/todos/10"
+todo = {"title": "Mow lawn"}
+response = requests.patch(api_url, json=todo)
 print(response.json())
 
 with open("post_response.json", "w", encoding="utf-8") as write_file:
