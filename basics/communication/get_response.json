@@ -1,0 +1,10 @@
+[
+  {
+    "userId": 1,
+    "id": 1,
+    "title": "delectus aut autem",
+    "completed": false
+  },
+  200,
+  "application/json; charset=utf-8"
+]
