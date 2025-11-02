@@ -21,7 +21,7 @@ parser = argparse.ArgumentParser()
 
 # 4) Combining positional & optional args, multiple levels of verbosity.
 parser.add_argument("square", type=int, help="display square of teh requested number")
-parser.add_argument("-v", "--verbosity", type=int, help="increase output verbosity")
+parser.add_argument("-v", "--verbosity", type=int, choices=[0, 1, 2], help="increase output verbosity")
 args = parser.parse_args()
 answer = args.square**2
 if args.verbosity == 2:
