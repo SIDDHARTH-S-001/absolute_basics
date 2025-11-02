@@ -23,11 +23,16 @@ response = requests.put(api_url, json=todo)
 # PATHCH Method.
 api_url = "https://jsonplaceholder.typicode.com/todos/10"
 response = requests.get(api_url)
-print(response.json())
+# print(response.json())
 api_url = "https://jsonplaceholder.typicode.com/todos/10"
 todo = {"title": "Mow lawn"}
 response = requests.patch(api_url, json=todo)
-print(response.json())
+# print(response.json())
+
+# DELETE Method.
+api_url = "https://jsonplaceholder.typicode.com/todos/10"
+response = requests.delete(api_url)
+print(response.json(), response.status_code)
 
 with open("post_response.json", "w", encoding="utf-8") as write_file:
     json.dump(post_response_info, write_file, indent=2)
