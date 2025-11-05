@@ -13,3 +13,6 @@
 
 # misc
 .python-version
+
+# directories
+basics/file_handling/outputs/
