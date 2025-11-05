@@ -1,0 +1,15 @@
+# image file types
+*.png
+*.jpg
+*.jpeg
+
+# data types
+*.csv
+*.xlsx
+
+# ms file types
+*.doc
+*.docx
+
+# misc
+.python-version
