@@ -1,0 +1,30 @@
+app:
+  name: "MyApp"
+  version: 1.2
+  debug: true
+
+database:
+  host: "localhost"
+  port: 5432
+  credentials:
+    user: "admin"
+    password: "secret"
+  options:
+    timeout: 30
+    use_ssl: false
+
+features:
+  enabled: ["feature1", "feature2", "feature3"]
+  thresholds:
+    feature1: 0.8
+    feature2: 0.5
+    feature3: 0.9
+
+logging:
+  level: INFO
+  handlers:
+    - console
+    - file
+  file:
+    path: "/var/log/myapp.log"
+    rotate: true
