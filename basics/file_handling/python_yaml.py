@@ -22,9 +22,11 @@ class UsingPyyaml():
         
 def parse_cfg(cfg):
     app, db, feat, log = cfg.app, cfg.database, cfg.features, cfg.logging
-    print(app, db, feat, log)
+    # print(app, db, feat, log)
     print(type(app))
     print(app.name)
+    print(type(log.handlers[1]))
+    print(type(feat.enabled[0]))
 
 @hydra.main(version_base=None, config_path=".", config_name="app-config")
 def main(cfg: DictConfig) -> None:
