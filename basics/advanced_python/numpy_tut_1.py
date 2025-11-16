@@ -6,7 +6,7 @@ All elements of the array must be of the same type of data.
 
 Once created, the total size of the array can't change.
 
-The shape must be “rectangular”, not “jagged”; e.g., each row of a two-dimensional array must have the same number of columns.
+The shape must be “rectangular”, not “jagged”; e.g., each row of a two-rdimensional array must have the same number of columns.
 
 """
 
@@ -40,5 +40,15 @@ def array_fundamentals():
     # The arrays are homogeneous, meaning they only contain elements of 1 datatype. 
     print(a.dtype)
 
+def basic_arrays():
+    print(np.zeros(2))  # array filled with zeroes.
+    print(np.ones(2))   # identity matrix.
+    print(np.empty(2))  # empty array with random values - saving memory & filling values later, hence speed factor.
+    print(np.arange(3)) # create an array with range of elements.
+    print(np.arange(2, 9, 2)) # contains a range of evenly spaced intervals, specify 1st number, last number & step size.
+    print(np.linspace(0, 10, num=5)) # create an array with values that are spaced linearly in a specified interval.
+    print(np.ones(2, dtype=np.int64)) # explictly mention the data-type.
+
 if __name__ == "__main__":
-    array_fundamentals()
+    # array_fundamentals()
+    basic_arrays()
