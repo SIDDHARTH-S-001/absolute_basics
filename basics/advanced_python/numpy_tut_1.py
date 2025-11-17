@@ -1,5 +1,6 @@
 import numpy as np
 import math
+import random # suitable for statistical purposes, not for cryptography.
 
 """ Numpy array rules.
 All elements of the array must be of the same type of data.
@@ -105,7 +106,79 @@ def array_operations():
     print(h.sum(axis=0)) # sum along row.
     print(h.sum(axis=1)) # sum along column.
 
+class misc():
+    @staticmethod
+    def beyond():
+        # Broadcasting: NumPy broadcasting is a mechanism that allows NumPy to perform arithmetic operations on arrays of different shapes and sizes. 
+        # It enables the element-wise operation of arrays without making unnecessary copies of data, thereby enhancing performance and memory efficiency.
+        # A ValueError is raised if dimensions are not compatible.
+        data = np.array([1, 2]) # example of broadcasting.
+        print(data * 1.6)
+        arr = np.array([1, 1, 2, 2, 2, 3, 4, 4, 5, 5, 5, 5])
+        print(np.unique(arr))
+        print(np.unique(arr, return_index=True))
+        a_2d = np.array([[1, 2], [2, 4], [1, 3], [4, 5], [2, 3]])
+        print(np.unique(a_2d))
+        print(np.unique(a_2d, return_index=True)) # returns index of the unique number as well.
+        a_3d = np.array([[[1, 2, 3], [2, 3, 4]], 
+                         [[3, 4, 5], [4, 5, 6]], 
+                         [[5, 6, 7], [6, 7, 8]],
+                         [[8, 9, 10], [9, 10, 11]]])
+        print(np.unique(a_3d, return_index=True)) # if axis argument isn't passed then the return_index element will be flattened.
+        print(np.unique(a_3d, return_index=True, axis=0)) # find unique rows.
+        print(np.unique(a_3d, return_index=True, axis=1)) # find unique columns.
+        print(np.unique(a_3d, return_index=True, axis=2)) # find unique entries along dim=2 (3rd dimension - depth).
+        print("-----------------------------------------------------------")
+        ur, indx, occ_count = np.unique(a_3d, return_index=True, axis=0, return_counts=True)
+        print(ur, indx, occ_count)
+        print("-----------------------------------------------------------")
+
+        a = rng.integers(0, 12, size=(2, 3))
+        print(a, a.reshape((3, 2)), a.transpose(), a.T)
+        print("-----------------------------------------------------------")
+        b = rng.integers(0, 15, size=5)
+        print(b, "\n", np.flip(b))
+        b_2d = rng.integers(0, 15, size=(2, 3))
+        print(b_2d, "\n", "-----", "\n", np.flip(b_2d)) # rows flip & even their respective row entries reverse.
+        print("-----------------------------------------------------------")
+        print(b_2d, "\n", "-----", "\n", np.flip(b_2d, axis=0)) # only rows get reversed & respective row entries remain intact.
+        print("-----------------------------------------------------------")
+        print(b_2d, "\n", "-----", "\n", np.flip(b_2d, axis=1)) # only columns get reversed & respective row entries remain intact.
+        # content reversal can be done for a specific row / specific column by passing the correct row / column index into the np.flip() method.
+        
+        # array flattening - flatten() & ravel().
+        # the new array created using ravel() is actually a reference to the parent array (i.e., a “view”).
+        x = np.array([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10]])
+        print(x.flatten()) # creates a copy.
+        print(x.ravel()) # creates a view.
+
+    @staticmethod
+    def useful_operations():
+        a = np.array([[0.45053314, 0.17296777, 0.34376245, 0.5510652],
+              [0.54627315, 0.05093587, 0.40067661, 0.55645993],
+              [0.12697628, 0.82485143, 0.26590556, 0.56917101]])
+        # array methods https://numpy.org/doc/stable/reference/arrays.ndarray.html#array-ndarray-methods
+        print(a.sum())
+        print(a.prod())
+        print(a.max())
+        print(a.min())
+        print(a.mean())
+        print(a.std())
+        print(a.min(axis=0))
+        print(a.min(axis=1))
+
+    @staticmethod
+    def random_values(): # https://numpy.org/doc/stable/reference/random/index.html#numpyrandom
+        print(rng.integers(5, size=(2, 3)))
+        print(rng.random()) # any random float in the range [0, 1).
+        print(rng.standard_normal(10)) # Generate an array of 10 numbers according to a unit Gaussian distribution.
+        print(rng.integers(low=0, high=25, size=10)) # generate 10 random integers between 0 & 25 & store it in an array.
+
 if __name__ == "__main__":
+    rng = np.random.default_rng(seed=None) # non-deterministic RNG when no seed is provided.
+    # seed must be a very large positive integer.
     # array_fundamentals()
     # basic_arrays()
-    array_operations()
+    # array_operations()
+    m = misc()
+    m.beyond()
