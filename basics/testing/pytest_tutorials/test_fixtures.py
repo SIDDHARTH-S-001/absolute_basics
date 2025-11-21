@@ -13,6 +13,10 @@ def test_divisible_by_3(input_value): # The fixture funcion must be the input pa
 def test_divisible_by_6(input_value):
     assert input_value % 6 == 0
 
+# execute as, 
+# pytest -m divisible -v
+
+
 """
 ### Notes ###
 ------------------------------------------------------------------------------------------------------------------------
