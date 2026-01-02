@@ -22,7 +22,8 @@ def binomial(num, k, p):
 def normal(num, mean, std_dev):
     """
     Returns: 
-        value of a random varible given it follows a Normal Distribution
+        value of a random varible given it follows a Normal Distribution, 
+        also serves as an approximation of the Binomial Distribution when n & p are neither very small nor very large
     Args: 
         num:     random variable
         mean:    mean of the gaussian disttribution
@@ -32,6 +33,34 @@ def normal(num, mean, std_dev):
     exponent = (num - mean)**2 / (2 * (std_dev**2))
     return constant * np.exp(-exponent) 
 
+def poisson(num, k, p):
+    """
+    Returns: 
+        value of a random varible given it follows a Poisson Distribution (approxmation of Binomial Distribution when 'p' is either very small or very large)
+    Args: 
+        num: number of independent bernoulli distributions
+        k:   random variable being k (success)
+        p:   probability of success
+        q:   probability of failure = 1 - p
+    """
+    lmd = num * p
+    return ((lmd**k) / factorial(k)) * np.exp(-lmd)
+
+def geometric(num, p, case="exact"):
+    """
+    Returns: 
+        probability of success at "exactly" n'th trial, considering all n trials are independent bernoulli distributions
+    Args: 
+        num: number of independent bernoulli distributions
+        p:   probability of success
+    Note:
+        p(x >= n) = (1-p)^(n-1), case where it takes "at least" n independent bernoulli trials to get success
+    """
+    if case=="exact":
+        return ((1 - p)**(num - 1))*p 
+    elif case=="at_least":
+        return (1 - p)**(num - 1)
+    
 ##########################################################################################################
 # Helper Functions
 ##########################################################################################################
@@ -62,21 +91,24 @@ if __name__ == "__main__":
     
     # dice roll example
     start = 1
-    n = 10
-    p = 0.5
-    binomial_list = []
-    normal_list = []
+    n = 100
+    p = 0.01
+    binomial_list, normal_list, poisson_list = [], [], []
     for k in range(n+1):
-        binomial_list.append(binomial(n, k, 0.5))
+        binomial_list.append(binomial(n, k, p))
         normal_list.append(normal(k, mean=n*p, std_dev=np.sqrt(n*p*(1-p))))
-    plt.plot(binomial_list, "b-", label="Binomial", linewidth=3)
-    plt.plot(normal_list, "r", label="Normal")
+        poisson_list.append(poisson(n, k, p))
+    plt.plot(binomial_list, "b+", label="Binomial", linewidth=3)
+    plt.plot(normal_list, "r*", label="Normal")
+    plt.plot(poisson_list, "g", label="Poisson")
     plt.legend()
     plt.xlim(0, n)
     # plt.show()
 
-    value, error = cdf(1, 0, 1)
-    print(value)
+    # value, error = cdf(1, 0, 1)
+    # print(value)
+
+    print(geometric(2, 1/6))
 
 
 
