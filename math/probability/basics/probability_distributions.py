@@ -17,14 +17,31 @@ def binomial(num, k, p):
     """
     return combination(num, k) * (p**k) * ((1 - p)**(num - k))
 
+def normal(num, mean, std_dev):
+    """
+    Returns: 
+        value of a random varible given it follows a Normal Distribution
+    Args: 
+        num:     random variable
+        mean:    mean of the gaussian disttribution
+        std_dev: standard deviation of the gaussian distribution
+    """
+    constant = 1 / (std_dev * np.sqrt(2*np.pi))
+    exponent = (num - mean)**2 / (2 * (std_dev**2))
+    return constant * np.exp(-exponent) 
+
 ##########################################################################################################
 # Helper Functions
 ##########################################################################################################
 
 def factorial(num):
-    assert isinstance(num, int), print(f"Number {num} must be an integer, but received type {type(num)}.")
-    assert (num >= 0), print(f"Number must be greater than or equal to 0, but received {num}.")
-    return int(num) if ((num - 1) == 0) else num * factorial(num - 1)
+    assert isinstance(num, int), f"Number must be an integer, got {type(num)}"
+    assert num >= 0, f"Number must be >= 0, got {num}"
+
+    if num == 0:
+        return 1
+
+    return num * factorial(num - 1)
     
 def combination(num, k):
     return int(factorial(num) / (factorial(k) * factorial(num - k)))
@@ -34,4 +51,23 @@ def permutation(num, k):
 
 if __name__ == "__main__":
     # print(factorial(-5))
-    print(combination(2, 1))
+    # print(combination(2, 1))
+    
+    # dice roll example
+    start = 1
+    n = 10
+    p = 0.5
+    binomial_list = []
+    normal_list = []
+    for k in range(n+1):
+        binomial_list.append(binomial(n, k, 0.5))
+        normal_list.append(normal(k, mean=n*p, std_dev=np.sqrt(n*p*(1-p))))
+    plt.plot(binomial_list, "b-", label="Binomial", linewidth=3)
+    plt.plot(normal_list, "r", label="Normal")
+    plt.legend()
+    plt.xlim(0, n)
+    plt.show()
+
+
+
+
