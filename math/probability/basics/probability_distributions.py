@@ -1,5 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
+from scipy.integrate import quad
+from typing import Optional
 
 ##########################################################################################################
 # Probability Distributions
@@ -34,13 +36,18 @@ def normal(num, mean, std_dev):
 # Helper Functions
 ##########################################################################################################
 
+def cdf(num, mean, std_dev):
+    X = np.linspace(start=-5*std_dev, stop=5*std_dev, num=10)
+    normal_dist = []
+    for x in range(len(X)):
+        normal_dist.append(normal(X[x], mean, std_dev))
+    return quad(lambda x: normal(x, mean, std_dev), a=-np.inf, b=num)
+
 def factorial(num):
     assert isinstance(num, int), f"Number must be an integer, got {type(num)}"
     assert num >= 0, f"Number must be >= 0, got {num}"
-
     if num == 0:
         return 1
-
     return num * factorial(num - 1)
     
 def combination(num, k):
@@ -66,7 +73,11 @@ if __name__ == "__main__":
     plt.plot(normal_list, "r", label="Normal")
     plt.legend()
     plt.xlim(0, n)
-    plt.show()
+    # plt.show()
+
+    value, error = cdf(1, 0, 1)
+    print(value)
+
 
 
 
