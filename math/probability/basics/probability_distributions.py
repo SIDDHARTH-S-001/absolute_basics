@@ -61,16 +61,27 @@ def geometric(num, p, case="exact"):
     elif case=="at_least":
         return (1 - p)**(num - 1)
     
+def exponential(lmd, t):
+    """
+    Returns: 
+        probability of an event happening at a specific time, modeled for positive time only
+        generally used to model lifetimes of entities, or really rare events
+    Args: 
+        lmd: lambda i.e 1 / expected_value i.e 1 / average
+        t:   time 
+    """
+    return lmd * np.exp(-lmd*t) if t >= 0 else 0
+    
 ##########################################################################################################
 # Helper Functions
 ##########################################################################################################
 
-def cdf(num, mean, std_dev):
-    X = np.linspace(start=-5*std_dev, stop=5*std_dev, num=10)
-    normal_dist = []
-    for x in range(len(X)):
-        normal_dist.append(normal(X[x], mean, std_dev))
-    return quad(lambda x: normal(x, mean, std_dev), a=-np.inf, b=num)
+def cdf(num, distribution, mean: Optional[float] = None, std_dev: Optional[float] = None):
+    if distribution == "normal":
+        return quad(lambda x: normal(x, mean, std_dev), a=-np.inf, b=num)
+    elif distribution == "exp":
+        lmd = 1 / mean # reciprocal of mean / average / expected value.
+        return quad(lambda x: exponential(lmd, x), a=-np.inf, b=num) # note that exponential is defined for non-negative inputs only.
 
 def factorial(num):
     assert isinstance(num, int), f"Number must be an integer, got {type(num)}"
@@ -105,10 +116,11 @@ if __name__ == "__main__":
     plt.xlim(0, n)
     # plt.show()
 
-    # value, error = cdf(1, 0, 1)
-    # print(value)
+    # value, error = cdf(num=1, mean=0, std_dev=1, distribution="normal")
+    value, error = cdf(mean=100, num=50, distribution="exp")
+    print(value)
 
-    print(geometric(2, 1/6))
+    # print(geometric(2, 1/6))
 
 
 
