@@ -6,31 +6,31 @@ import json
 def part_1_convert_dict_to_json():
     food_ratings = {"organic_dog_food": 2, 
                     "human_food": 10}
-    json1 = json.dumps(food_ratings) # returns a string when run on cli. On code - use print statement. Hence storing in a variable for printing.
-    print(json1)
+    food_ratings_json = json.dumps(food_ratings) # returns a string when run on cli. On code - use print statement. Hence storing in a variable for printing.
+    print(food_ratings_json)
 
     numbers_present = {1: True,
                     2: True, 
                     0: False}
-    json2 = json.dumps(numbers_present)
-    print(json2) # automatically converts boolean types to lowercase - json format. Also, numbers become strings.
+    numbers_present_json = json.dumps(numbers_present)
+    print(numbers_present_json) # automatically converts boolean types to lowercase - json format. Also, numbers become strings.
 
     dog_id = 1
     dog_name = "Frieda"
     dog_registry = {dog_id: {"name": dog_name}}
-    json3 = json.dumps(dog_registry)
-    print(json3)
+    dog_registry_json = json.dumps(dog_registry)
+    print(dog_registry_json)
 
     available_nums = {(1, 2): True, 3: False}
     # json.dumps(available_nums) # This should flag a TypeError, as one of the keys is a tuple - unsupported format.
-    json4 = json.dumps(available_nums, skipkeys=True) # This works, and skips the key-value pair that follows unsupported format.
-    print(json4) # Use skip keys with caution.
+    available_nums_json = json.dumps(available_nums, skipkeys=True) # This works, and skips the key-value pair that follows unsupported format.
+    print(available_nums_json) # Use skip keys with caution.
 
     toy_conditions = {"chew_bone": 7,
                     "ball": 3, 
                     "sock": -1}
-    json5 = json.dumps(toy_conditions, sort_keys=True) # Sorts keys alphabetically.
-    print(json5)
+    toy_conditions_json = json.dumps(toy_conditions, sort_keys=True) # Sorts keys alphabetically.
+    print(toy_conditions_json)
 
 # 2) Write a JSON File with Python.
 dog_data = {
