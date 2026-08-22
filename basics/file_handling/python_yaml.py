@@ -1,9 +1,8 @@
 import yaml
-import numpy as np
 import hydra
-from omegaconf import DictConfig, OmegaConf
+from omegaconf import DictConfig
 
-class UsingPyyaml():
+class PyyamlExample():
     def __init__(self):
         pass
 
@@ -13,7 +12,7 @@ class UsingPyyaml():
                 data = yaml.safe_load(file)
                 return data
             except yaml.YAMLError as e:
-                print(e)
+                print(e) # single letter variable name - very small scope - hence allowed
 
     def write_yaml(self, filename, data):
         with open(filename, mode="w") as write_file:
@@ -34,7 +33,7 @@ def main(cfg: DictConfig) -> None:
     parse_cfg(cfg=cfg)
 
 if __name__ == "__main__":
-    # up = UsingPyyaml()
+    # up = PyyamlExample()
     # filename = "random-data.yaml"
     # # data = read_yaml(filename)
     # data = {
