@@ -1,9 +1,9 @@
 ### Chapter 2
 - Name of a variable / function / class, etc - must reveal its intent, if it requires a comment, then it doesn't  convey its intent clearly. 
   - The name must express - why it exists? what it does? and how is it used? 
-  - Avoid leaving false clues that provide mis-information to the readers. 
+  - Avoid leaving false clues that provide wrong information to the readers (mis-lead readers). 
   - Beware of using similar names that vary in very small ways, ensure they're significantly distinct. Saves trouble when using code completion. 
-  - Avoid using O (~0) & l (~1) as variable names in codes, they mislead the reader a lot. 
+  - Avoid using Capital "O" (~0) & small "l" (~1) as variable names in codes, they mislead the reader a lot. 
   - Don't use number-series (eg. a1, a2, ...) or noise words (eg. msg, themsg, customerObject, accountData, etc), they don't add any meaning to the information. 
   - Ensure the datatype is not a part of the name. Eg. "nameString" is not different from "name". 
   - Names have to be pronouncable. If you cannot pronounce it, you cannot discuss it without sounding like an idiot. 
