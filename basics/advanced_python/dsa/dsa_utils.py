@@ -13,7 +13,7 @@ class Stack:
     def pop(self):
         "Removes the last element from the stack"
         try:
-            self.stack.pop()
+            return self.stack.pop()
         except IndexError:
             print("Stack Empty!")
 
@@ -44,14 +44,14 @@ class Queue:
     def dequeue(self):
         "Removes the first element from the queue"
         try: 
-            self.queue.pop(0) # removes the first entry
+            return self.queue.pop(0) # removes the first entry
         except IndexError:
             print("Queue Empty!")
 
     def peek(self):
         "Shows first element of the queue"
         try:
-            self.queue[0]
+            return self.queue[0]
         except IndexError:
             print("Queue Empty!")
 
