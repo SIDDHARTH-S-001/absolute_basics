@@ -83,6 +83,7 @@ class LinkedList():
         print("null")
 
     def findLowestValue(self):
+        "Traverse through the LL & return the minValue among all nodes"
         minValue = self.head.data
         currentNode = self.head.next
 
@@ -92,4 +93,30 @@ class LinkedList():
             currentNode = currentNode.next
 
         return minValue
-    
+
+    def deleteSpecificNode(self, nodeToDelete):
+        "Deletes a specific node"
+        # check if the head is the node to delete
+        if nodeToDelete == self.head:
+            # move the head to the second node
+            self.head = self.head.next
+            return True
+
+        # begin searching from the head
+        currentNode = self.head
+        # stop when next node is the target
+        while currentNode and currentNode.next is not nodeToDelete:
+            currentNode = currentNode.next
+
+        # reached the end without finding the target
+        if currentNode is None:
+            print(f"Couldn't find target node containing value: {nodeToDelete.data} in the LinkedList")
+            return False
+
+        # skip the target node by connecting the previous node, 
+        # directly to the target's next node
+        currentNode.next = nodeToDelete.next
+        nodeToDelete.next = None # fully detach the target node
+        # Python's built-in garbage collector will remove this node from memory, 
+        # provided this target node is not referenced anywhere else
+        return True
