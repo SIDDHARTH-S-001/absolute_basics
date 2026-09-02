@@ -84,6 +84,8 @@ class LinkedList():
 
     def findLowestValue(self):
         "Traverse through the LL & return the minValue among all nodes"
+        if self.head is None:
+            raise ValueError("Cannot find minimum in an empty LinkedList")
         minValue = self.head.data
         currentNode = self.head.next
 
@@ -97,9 +99,11 @@ class LinkedList():
     def deleteSpecificNode(self, nodeToDelete):
         "Deletes a specific node"
         # check if the head is the node to delete
-        if nodeToDelete == self.head:
+        if nodeToDelete is self.head:
             # move the head to the second node
-            self.head = self.head.next
+            self.head = nodeToDelete.next
+            # fully detach the head
+            nodeToDelete.next = None 
             return True
 
         # begin searching from the head
