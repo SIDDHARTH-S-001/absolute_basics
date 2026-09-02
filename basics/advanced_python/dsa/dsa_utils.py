@@ -113,10 +113,43 @@ class LinkedList():
             print(f"Couldn't find target node containing value: {nodeToDelete.data} in the LinkedList")
             return False
 
-        # skip the target node by connecting the previous node, 
+        # skip the target node by connecting the previous node,
         # directly to the target's next node
         currentNode.next = nodeToDelete.next
         nodeToDelete.next = None # fully detach the target node
-        # Python's built-in garbage collector will remove this node from memory, 
+        # Python's built-in garbage collector will remove this node from memory,
         # provided this target node is not referenced anywhere else
         return True
+
+    def insertNodeAtPosition(self, newNode, position):
+        """
+        Inserts a new node at the specified position in the LinkedList, 
+        using 1-based positioning
+        """
+        # check for illegal case
+        if position < 1:
+            raise IndexError("Position must be >= 1")
+        
+        # check if new node should become the head
+        if position == 1:
+            newNode.next = self.head
+            # update head
+            self.head = newNode
+            return True
+
+        # start from the head node
+        currentNode = self.head
+        if currentNode is None:
+            raise IndexError("LinkedList insertion at position out of range")
+        
+        # move to the node before insertion position
+        for _ in range(position - 2):
+            currentNode = currentNode.next  
+            if currentNode is None:
+                raise IndexError("LinkedList insertion at position out of range")
+
+        # new node points to the following node
+        newNode.next = currentNode.next
+        # previous node points to the new node
+        currentNode.next = newNode
+        return True        
