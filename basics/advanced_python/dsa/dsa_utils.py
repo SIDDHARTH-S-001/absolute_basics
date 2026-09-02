@@ -81,4 +81,15 @@ class LinkedList():
             currentNode = currentNode.next
 
         print("null")
+
+    def findLowestValue(self):
+        minValue = self.head.data
+        currentNode = self.head.next
+
+        while currentNode:
+            if currentNode.data < minValue:
+                minValue = currentNode.data
+            currentNode = currentNode.next
+
+        return minValue
     
