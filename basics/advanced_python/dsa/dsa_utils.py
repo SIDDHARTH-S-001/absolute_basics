@@ -57,4 +57,28 @@ class Queue:
 
     def size(self):
         return len(self.queue)
+
+class Node:
+    """
+    Node is a vertex in the LinkedList"
+    A node contains its value (data), and
+    pointer to the location of the next node in the LinkedList 
+    """
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList():
+    def __init__(self):
+        self.head = None
+
+    def traverseAndPrint(self):
+        "Traverse and print the contents of the LinkedList"
+        currentNode = self.head
+        
+        while currentNode:
+            print(currentNode.data, end=" -> ")
+            currentNode = currentNode.next
+
+        print("null")
     
